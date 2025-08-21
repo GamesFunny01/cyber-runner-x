@@ -47,12 +47,14 @@ body{
 }
 .btn{ @apply rounded-md border border-white/15 px-3 py-1; }
 
-/* ===== Tombol AURORA UNGU (animated + premium glow) ===== */
+/* ===== Aurora button (dipakai GLOBAL) =====
+   - Sekarang .btn-primary dan .btn-aurora identik → semua tombol sign-in sinkron */
 @keyframes auroraMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+.btn-primary,
 .btn-aurora{
   position: relative;
   border: 0;
@@ -66,6 +68,7 @@ body{
     inset 0 0 18px rgba(167, 139, 250, .25);
   transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
 }
+.btn-primary::before,
 .btn-aurora::before{
   content:"";
   position:absolute; inset:-3px;
@@ -78,6 +81,7 @@ body{
   opacity:.7;
   transition: opacity .2s ease;
 }
+.btn-primary:hover,
 .btn-aurora:hover{
   transform: translateY(-1px);
   box-shadow:
@@ -85,7 +89,9 @@ body{
     inset 0 0 20px rgba(167, 139, 250, .3);
   filter: saturate(1.1);
 }
+.btn-primary:hover::before,
 .btn-aurora:hover::before{ opacity: .95; }
+.btn-primary:focus-visible,
 .btn-aurora:focus-visible{
   outline: none;
   box-shadow:
@@ -93,12 +99,8 @@ body{
     0 0 0 6px rgba(167,139,250,.35);
 }
 
-.btn-primary{
-  @apply rounded-md px-3 py-1 font-medium;
-  background: linear-gradient(90deg,#8b5cf6,#06b6d4);
-  color: #fff;
-  box-shadow: 0 0 28px rgba(139,92,246,.28), 0 0 24px rgba(6,182,212,.18) inset;
-}
+/* ukuran kecil buat tombol di header (opsional) */
+.btn-aurora--sm{ @apply px-3 py-1 rounded-full text-sm; }
 
 .metric     { @apply text-[11px] uppercase tracking-wide text-zinc-400; }
 .metric-xl  { @apply text-2xl font-bold; }
@@ -107,7 +109,7 @@ body{
 .recharts-default-tooltip {
   background: rgba(0,0,0,.86) !important;
   border: 1px solid rgba(255,255,255,.12) !important;
-  color: #e8e8f6 !important;
+  color: #e8e9f6 !important;
 }
 
 /* Gesture stabil */
